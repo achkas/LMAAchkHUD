@@ -9,9 +9,10 @@
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Components/LMAHealthComponent.h"
+#include <Components/LMAWeaponComponent.h>
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Engine/Engine.h"
-//#include <Components/LMAWeaponComponent.h>
+
 
 
 ALMADefaultCharacter::ALMADefaultCharacter()
@@ -34,7 +35,7 @@ ALMADefaultCharacter::ALMADefaultCharacter()
 
 	HealthComponent = CreateDefaultSubobject<ULMAHealthComponent>("HealthComponent");
 
-	//WeaponComponent = CreateDefaultSubobject<ULMAWeaponComponent>("Weapon");
+	WeaponComponent = CreateDefaultSubobject<ULMAWeaponComponent>("Weapon");
 
 	bUseControllerRotationPitch = false; // êóðñîð
 	bUseControllerRotationYaw = false;
@@ -82,7 +83,7 @@ void ALMADefaultCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 	PlayerInputComponent->BindAction("Sprint", IE_Pressed, this, &ALMADefaultCharacter::StartSprinting);
 	PlayerInputComponent->BindAction("Sprint", IE_Released, this, &ALMADefaultCharacter::StopSprinting);
 
-	//PlayerInputComponent->BindAction("Fire", IE_Pressed, WeaponComponent, &ULMAWeaponComponent::Fire);
+	PlayerInputComponent->BindAction("Fire", IE_Pressed, WeaponComponent, &ULMAWeaponComponent::Fire);
 
 	//PlayerInputComponent->BindAction("Reload", IE_Pressed, WeaponComponent, &ULMAWeaponComponent::Reload);
 }

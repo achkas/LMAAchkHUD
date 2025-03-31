@@ -10,7 +10,7 @@ class UCameraComponent;
 class USpringArmComponent;
 class ULMAHealthComponent;
 class UAnimMontage;
-//class ULMAWeaponComponent;
+class ULMAWeaponComponent;
 
 UCLASS()
 class LEAVEMEALONE_API ALMADefaultCharacter : public ACharacter
@@ -56,8 +56,8 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components|Stamina")
 	bool IsSprinting = false;
 
-	//UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components|Weapon")
-	//ULMAWeaponComponent* WeaponComponent;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components|Weapon")
+	ULMAWeaponComponent* WeaponComponent;
 
 	virtual void BeginPlay() override;
 
