@@ -22,6 +22,8 @@ public:
 
 	UFUNCTION()
 	ULMAHealthComponent* GetHealthComponent() const { return HealthComponent; }
+	UFUNCTION(BlueprintCallable, Category = "Character")
+	float GetSprinting() const { return IsSprinting; };
 
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components")
@@ -67,23 +69,21 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 private:
-	float YRotation = -75.0f;  // – îòâå÷àåò çà ïîâîðîò êàìåðû ïî îñè Y.
-	float ArmLength = 1400.0f; // – îòâå÷àåò çà äëèíó øòàòèâà.
-	float FOV = 55.0f;		   // – îòâå÷àåò çà ïîëå çðåíèÿ êàìåðû.
+	float YRotation = -75.0f;  
+	float ArmLength = 1400.0f; 
+	float FOV = 55.0f;		   
 	float MinArmLength = 300.0f;
 	float MaxArmLength = 2500.0f;
 	float ZoomSpeed = 100.0f;
 
-	void MoveForward(float Value); // äâèæåíèå ïåðñîíàæà ïî îñè X.
-	void MoveRight(float Value);   // äâèæåíèå ïåðñîíàæà ïî îñè Y.
-	void Zoom(float Value);		   // ïðèáëèæåíèå êàìåðû
+	void MoveForward(float Value); 
+	void MoveRight(float Value);   
+	void Zoom(float Value);		   
 
 	void OnDeath();
 	void OnHealthChanged(float NewHealth);
 
-	void RotationPlayerOnCursor();
-
-	//SprintSpeedMultiplier
+	void RotationPlayerOnCursor();	
 
 	float DefaultWalkSpeed;
 	float Stamina = 0.0f;

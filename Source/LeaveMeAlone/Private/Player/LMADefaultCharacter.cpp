@@ -15,6 +15,7 @@
 
 
 
+
 ALMADefaultCharacter::ALMADefaultCharacter()
 {
 
@@ -83,9 +84,10 @@ void ALMADefaultCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 	PlayerInputComponent->BindAction("Sprint", IE_Pressed, this, &ALMADefaultCharacter::StartSprinting);
 	PlayerInputComponent->BindAction("Sprint", IE_Released, this, &ALMADefaultCharacter::StopSprinting);
 
-	PlayerInputComponent->BindAction("Fire", IE_Pressed, WeaponComponent, &ULMAWeaponComponent::Fire);
-
-	//PlayerInputComponent->BindAction("Reload", IE_Pressed, WeaponComponent, &ULMAWeaponComponent::Reload);
+	//PlayerInputComponent->BindAction("Fire", IE_Pressed, WeaponComponent, &ULMAWeaponComponent::Fire);
+	PlayerInputComponent->BindAction("Fire", IE_Pressed, WeaponComponent, &ULMAWeaponComponent::StartFire);
+	PlayerInputComponent->BindAction("Fire", IE_Released, WeaponComponent, &ULMAWeaponComponent::StopFire);
+	PlayerInputComponent->BindAction("Reload", IE_Pressed, WeaponComponent, &ULMAWeaponComponent::Reload);
 }
 
 void ALMADefaultCharacter::MoveForward(float Value)
@@ -112,7 +114,7 @@ void ALMADefaultCharacter::OnHealthChanged(float NewHealth)
 void ALMADefaultCharacter::OnDeath()
 {
 	CurrentCursor->DestroyRenderState_Concurrent();
-
+	
 	PlayAnimMontage(DeathMontage);
 
 	GetCharacterMovement()->DisableMovement();
@@ -124,6 +126,8 @@ void ALMADefaultCharacter::OnDeath()
 		Controller->ChangeState(NAME_Spectating);
 	}
 }
+
+
 
 void ALMADefaultCharacter::RotationPlayerOnCursor()
 {
@@ -179,5 +183,3 @@ void ALMADefaultCharacter::StopSprinting() // 6
 	IsSprinting = false;
 	GetCharacterMovement()->MaxWalkSpeed = DefaultWalkSpeed;
 }
-
-

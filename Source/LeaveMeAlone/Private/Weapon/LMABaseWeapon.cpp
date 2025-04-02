@@ -3,6 +3,7 @@
 
 #include "Weapon/LMABaseWeapon.h"
 #include "Components/SkeletalMeshComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 DEFINE_LOG_CATEGORY_STATIC(LogWeapon, All, All);
 
@@ -52,6 +53,8 @@ void ALMABaseWeapon::DecrementBullets()
 
 	if (IsCurrentClipEmpty())
 	{
+	    OnAmmoEmpty.Broadcast();
+		StopFire();
 		ChangeClip();
 	}
 }
@@ -65,6 +68,24 @@ void ALMABaseWeapon::ChangeClip()
 {
 	CurrentAmmoWeapon.Bullets = AmmoWeapon.Bullets;
 }
+
+ void ALMABaseWeapon::StartFire()
+{
+	if (!IsCurrentClipEmpty() && !GetWorld()->GetTimerManager().IsTimerActive(FireTimerHandle))
+	{
+		GetWorld()->GetTimerManager().SetTimer(FireTimerHandle, this, &ALMABaseWeapon::Fire, 0.1f, true);
+	}
+} 
+ 
+ void ALMABaseWeapon::StopFire()
+{
+	GetWorld()->GetTimerManager().ClearTimer(FireTimerHandle);
+}
+
+  bool ALMABaseWeapon::IsClipFull() const
+ {
+ 	return CurrentAmmoWeapon.Bullets == AmmoWeapon.Bullets;
+ }
 
 void ALMABaseWeapon::Tick(float DeltaTime)
 {
