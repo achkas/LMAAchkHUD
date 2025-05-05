@@ -30,7 +30,7 @@ protected:
 	USpringArmComponent* SpringArmComponent; // øòàòèâ
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components")
-	UCameraComponent* CameraComponent; // êàìåðà
+	UCameraComponent* CameraComponent; // êàìåðà 
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components|Health")
 	ULMAHealthComponent* HealthComponent; // çäîðîâüå

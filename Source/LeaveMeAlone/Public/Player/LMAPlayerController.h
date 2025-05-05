@@ -18,4 +18,14 @@ protected:
 	virtual void BeginPlay() override;
 
 	virtual void BeginSpectatingState() override;
+
+	
+	
+
+	//public:
+	//UPROPERTY(EditDefaultsOnly, Category = "UI")
+	//	TSubclassOf<UUserWidget> WBP_EndGameDeth; // Класс твоего виджета
+
+	//UFUNCTION()
+	//void ShowDeathMenu(); // Функция для отображения меню
 };

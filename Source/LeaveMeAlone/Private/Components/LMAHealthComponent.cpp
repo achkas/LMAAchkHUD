@@ -57,3 +57,8 @@ void ULMAHealthComponent::OnTakeAnyDamage(
 	}
 }
 
+float ULMAHealthComponent::GetHealth() const
+{
+	return Health;
+}
+

@@ -18,7 +18,12 @@ public:
 	ULMAHealthComponent();
 
 	UFUNCTION(BlueprintCallable)
-	float GetHealth() const { return Health; }
+	float GetHealth() const;
+
+	/*UFUNCTION(BlueprintCallable)
+	float GetHealth() const;*/
+
+
 
 	UFUNCTION(BlueprintCallable)
 	bool IsDead() const;
