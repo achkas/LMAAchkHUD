@@ -55,9 +55,12 @@ void ALMADefaultCharacter::BeginPlay()
 	}
 
 	OnHealthChanged(HealthComponent->GetHealth());
-	HealthComponent->OnDeath.AddUObject(this, &ALMADefaultCharacter::OnDeath);
-	HealthComponent->OnHealthChanged.AddUObject(this, &ALMADefaultCharacter::OnHealthChanged);
 
+	//Созданный делегат доступен только в С++, значит подписываться на него необходимо с помощью 
+    //функции AddUObject
+	HealthComponent->OnDeath.AddUObject(this, &ALMADefaultCharacter::OnDeath);
+
+	HealthComponent->OnHealthChanged.AddUObject(this, &ALMADefaultCharacter::OnHealthChanged);
 	DefaultWalkSpeed = GetCharacterMovement()->MaxWalkSpeed; // 6
 }
 
@@ -111,7 +114,12 @@ void ALMADefaultCharacter::OnHealthChanged(float NewHealth)
 	GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, FString::Printf(TEXT("Health = %f"), NewHealth));
 }
 
-void ALMADefaultCharacter::OnDeath()
+
+//  А реализация функции смерти персонажа будет представлять из себя вызов события проигрывания анимации монтажа,
+//	остановки движения персонажа(иначе мы сможем передвигать нашим персонажем и после смерти).А также вызовем событие SetLifeSpan,
+//	которое в качестве аргумента принимает время,
+//	через которое объект будет уничтожен.
+	void ALMADefaultCharacter::OnDeath()
 {
 	CurrentCursor->DestroyRenderState_Concurrent();
 	

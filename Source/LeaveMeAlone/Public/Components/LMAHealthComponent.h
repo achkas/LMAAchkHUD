@@ -6,7 +6,7 @@
 #include "Components/ActorComponent.h"
 #include "LMAHealthComponent.generated.h"
 
-DECLARE_MULTICAST_DELEGATE(FOnDeath)
+DECLARE_MULTICAST_DELEGATE(FOnDeath)// Декларируем делегат
 DECLARE_MULTICAST_DELEGATE_OneParam(FOnHealthChanged, float);
 
 UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
@@ -25,13 +25,14 @@ public:
 
 
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable)//Далее нам необходимо объявить функцию, которая будет обрабатывать оповещать клиентов о смерти, в случае потери здоровья.
 	bool IsDead() const;
 
 	bool AddHealth(float NewHealth);
 	bool IsHealthFull() const;
 
-	FOnDeath OnDeath;
+	FOnDeath OnDeath;//Так как условия смерти будут контролироваться в компоненте здоровья, нам необходимо в нем объявить задекларированный делегат
+
 	FOnHealthChanged OnHealthChanged;
 
 protected:

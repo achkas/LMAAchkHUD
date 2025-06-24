@@ -42,6 +42,11 @@ void ULMAHealthComponent::BeginPlay()
 	}
 }
 
+
+//Далее, если мы умерли после получения урона, то наш делегат оповестит всех подписавшихся клиентов, 
+//что у них недостаточно здоровья.Функция Broadcast отвечает за оповещение всех подписавшихся
+//объектов.Но в настоящее время мы ещё не подписались на делегат ни в одном из классов.В связи с чем,
+//переходим в заголовочный файл LMADefaultCharacter.h и продолжаем работу.
 void ULMAHealthComponent::OnTakeAnyDamage(
 	AActor* DamagedActor, float Damage, const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser)
 {
@@ -53,7 +58,7 @@ void ULMAHealthComponent::OnTakeAnyDamage(
 
 	if (IsDead())
 	{
-		OnDeath.Broadcast();
+		OnDeath.Broadcast();//оповестит всех подписавшихся клиентов
 	}
 }
 

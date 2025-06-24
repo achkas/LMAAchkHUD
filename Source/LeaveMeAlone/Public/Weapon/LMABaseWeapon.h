@@ -9,6 +9,7 @@
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnAmmoEmpty);
 
 class USkeletalMeshComponent;
+class UNiagaraSystem;
 
 USTRUCT(BlueprintType)
 struct FAmmoWeapon
@@ -42,6 +43,14 @@ public:
 
 	FOnAmmoEmpty OnAmmoEmpty;
 	FAmmoWeapon GetCurrentAmmoWeapon() const { return CurrentAmmoWeapon; }
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapon")
+	UNiagaraSystem* TraceEffect;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapon")
+	FString TraceName = "Tracer";
+
+	void SpawnTrace(const FVector& TraceStart, const FVector& TraceEnd);
 
 
 protected:

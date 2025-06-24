@@ -2,6 +2,8 @@
 
 #pragma once
 
+// меню, ниагара
+
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "LMADefaultCharacter.generated.h"
@@ -12,10 +14,15 @@ class ULMAHealthComponent;
 class UAnimMontage;
 class ULMAWeaponComponent;
 
+
+
 UCLASS()
 class LEAVEMEALONE_API ALMADefaultCharacter : public ACharacter
 {
 	GENERATED_BODY()
+
+	
+	
 
 public:
 	ALMADefaultCharacter();
@@ -78,9 +85,14 @@ private:
 
 	void MoveForward(float Value); 
 	void MoveRight(float Value);   
-	void Zoom(float Value);		   
+	void Zoom(float Value);
 
+
+	//объявить функцию, которая будет реагировать на сообщение от делегата, о 
+    //том, что персонаж умер.Функция должна повторять сигнатуру делегата.Наш делегат не имеет параметров,
+	//а значит и функция не должна их включать.
 	void OnDeath();
+
 	void OnHealthChanged(float NewHealth);
 
 	void RotationPlayerOnCursor();	
