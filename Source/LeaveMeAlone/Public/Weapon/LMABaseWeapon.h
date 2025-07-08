@@ -10,6 +10,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnAmmoEmpty);
 
 class USkeletalMeshComponent;
 class UNiagaraSystem;
+class USoundWave;
 
 USTRUCT(BlueprintType)
 struct FAmmoWeapon
@@ -49,6 +50,9 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapon")
 	FString TraceName = "Tracer";
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapon")
+	USoundWave* ShootWave;
 
 	void SpawnTrace(const FVector& TraceStart, const FVector& TraceEnd);
 

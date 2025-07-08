@@ -47,7 +47,7 @@ void ALMABaseWeapon::Shoot()
 	}
 
 	SpawnTrace(TraceStart, TracerEnd);
-	//UGameplayStatics::PlaySoundAtLocation(GetWorld(), ShootWave, TraceStart);
+	UGameplayStatics::PlaySoundAtLocation(GetWorld(), ShootWave, TraceStart);
 	DecrementBullets();
 }
 
