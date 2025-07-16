@@ -11,7 +11,7 @@ ALMAEnemyCharacter::ALMAEnemyCharacter()
  	
 	PrimaryActorTick.bCanEverTick = true;
 	HealthComponent = CreateDefaultSubobject<ULMAHealthComponent>("HealthComponent");
-
+	
 }
 
 
